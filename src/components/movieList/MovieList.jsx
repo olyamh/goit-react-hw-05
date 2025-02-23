@@ -4,7 +4,7 @@ const MovieCard = ({ movies, isLoading }) => {
   const location = useLocation();
 
   if (!movies) {
-    return null;
+    return <></>;
   }
   if (isLoading){
     return <p>Loading ...</p>
@@ -16,6 +16,7 @@ const MovieCard = ({ movies, isLoading }) => {
   return (
     <>
  
+     {movies.length >0 ? 
       <ul>
         {movies.map((item) => (
           <li key={item.id}>
@@ -35,7 +36,8 @@ const MovieCard = ({ movies, isLoading }) => {
             </div>
           </li>
         ))}
-      </ul>
+      </ul> :
+      <p>No movies for this request</p>}
     </>
   );
 };

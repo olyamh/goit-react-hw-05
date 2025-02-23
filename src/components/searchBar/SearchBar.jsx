@@ -14,6 +14,9 @@ const SearchBar = ({ handleSetQuery }) => {
     if (!query.trim()) {
       return alert("Please enter a query");
     }
+
+
+
     handleSetQuery(query);
     console.log('query', query);
     setQuery('');

@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { searchMovies } from "../service/api";
 import SearchBar from "../components/searchBar/SearchBar";
-import MovieCard from "../components/movieCard/MovieCard";
+import MovieList from "../components/movieList/MovieList";
 import { useSearchParams } from "react-router-dom";
+import ErrorMessage from "../components/errorMessage/ErrorMessage";
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] =useState(false);
   const query = searchParams.get("query") ?? "";
 
 
   useEffect(() => {
-    setIsLoading(true);
-    updateSearchParams("q", query);
+   
+    updateSearchParams('query', query);
     if (!query) {
       return;
     }
 
     const getData = async () => {
       try {
+        setIsLoading(true);
         const { data } = await searchMovies(query);
         setMovies(data.results);
-        setIsLoading(false)
+        setIsLoading(false);
+        setIsError(false);
       } catch (error) {
+        setIsError(true);
         alert("An error occurred while fetching data", error);
       }
     };
@@ -46,8 +51,10 @@ const MoviesPage = () => {
   return (
     <>
       <SearchBar handleSetQuery={handleChangeQuery} />
-      <MovieCard movies={movies} query={query} />
-    </>
+    {!query ? <></> : <MovieList movies={movies} query={query} />}
+      {isLoading ?? <p>Loading ...</p>}
+      {isError && <ErrorMessage />}
+        </>
   );
 };
 

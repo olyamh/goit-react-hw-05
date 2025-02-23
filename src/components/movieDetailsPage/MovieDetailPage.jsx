@@ -1,7 +1,7 @@
 import { useEffect,  useState } from "react";
 import { Link, Outlet,  useParams } from "react-router-dom";
-import { searchMovieById } from "../service/api";
-import BackButton from "../components/backButton/BackButton";
+import { searchMovieById } from "../../service/api";
+import BackButton from "../backButton/BackButton";
 
 const MovieDetailPage = () => {
   const { movieId } = useParams();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchMovies } from "../service/api";
-import MovieCard from "../components/movieCard/MovieCard";
+import MovieCard from "../components/movieList/MovieList";
 // import Loader from "../components/loader/Loader";
 
 const HomePage = () => {
