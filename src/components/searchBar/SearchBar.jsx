@@ -1,4 +1,6 @@
  import React, { useState } from "react";
+ import s from "./SearchBar.module.css"
+import clsx from "clsx";
 
 const SearchBar = ({ handleSetQuery }) => {
   const [query, setQuery] = useState('');
@@ -21,7 +23,7 @@ const SearchBar = ({ handleSetQuery }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Search movie" value={query} onChange={handleQuery} />
-        <button type="submit">Search Movie</button>
+        <button className={clsx(s.button)} type="submit">Search Movie</button>
       </form>
     </div>
   )
