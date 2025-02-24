@@ -3,7 +3,7 @@ import { Link, Outlet,  useParams } from "react-router-dom";
 import { searchMovieById } from "../../service/api";
 import BackButton from "../backButton/BackButton";
 
-const MovieDetailPage = () => {
+const MovieDetailsPage = () => {
   const { movieId } = useParams();
   console.log(useParams);
   const [singleMovie, setSingleMovie] = useState(null);
@@ -51,4 +51,4 @@ useEffect(() => {
   );
 };
 
-export default MovieDetailPage;
+export default MovieDetailsPage;
